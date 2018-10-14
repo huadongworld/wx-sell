@@ -4,8 +4,6 @@
 # to generate your .gitignore file.
 jrebel.jvm.args
 scs.sql
-src/main/java/com/ys/scs/test/*.java
-
 
 build
 .gradle
