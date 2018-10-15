@@ -10,6 +10,7 @@ public enum ProductStatusEnum implements CodeEnum {
      * 上线状态
      */
     UP(0, "在架"),
+
     DOWN(1, "下架");
 
     private Integer code;
