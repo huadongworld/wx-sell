@@ -1,12 +1,16 @@
 package com.ys.sell.dao;
 
 import com.ys.sell.model.ProductCategory;
+import org.assertj.core.util.Lists;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -31,11 +35,12 @@ public class ProductCategoryRepositoryTest {
     }
 
     @Test
+    @Transactional
     public void saveTest() {
-        ProductCategory productCategory = new ProductCategory();
-        productCategory.setCategoryName("女生最爱");
-        productCategory.setCategoryType(3);
-        repository.save(productCategory);
+        ProductCategory productCategory = new ProductCategory("热销商品", 2);
+        ProductCategory result = repository.save(productCategory);
+        Assert.assertNotNull(result);
+        Assert.assertNotEquals(null, result);
     }
 
     @Test
@@ -49,10 +54,9 @@ public class ProductCategoryRepositoryTest {
     }
 
     @Test
-    public void deleteTest() {
-        Optional<ProductCategory> productCategoryOptional = repository.findById(2);
-        if (productCategoryOptional.isPresent()) {
-            repository.delete(productCategoryOptional.get());
-        }
+    public void findByCategoryTypeInTest() {
+        List<ProductCategory> productCategories = repository.findByCategoryTypeIn(Lists.newArrayList(1, 2));
+        Assert.assertNotEquals(0, productCategories.size());
+        Assert.assertNotEquals(2, productCategories.size());
     }
 }
