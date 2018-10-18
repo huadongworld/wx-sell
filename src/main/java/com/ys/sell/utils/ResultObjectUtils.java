@@ -9,11 +9,11 @@ import com.ys.sell.common.ResultObject;
 public class ResultObjectUtils {
 
     public static ResultObject success(Object object) {
-        ResultObject resultVO = new ResultObject();
-        resultVO.setData(object);
-        resultVO.setCode(0);
-        resultVO.setMsg("成功");
-        return resultVO;
+        ResultObject resultObject = new ResultObject();
+        resultObject.setData(object);
+        resultObject.setCode(0);
+        resultObject.setMsg("成功");
+        return resultObject;
     }
 
     public static ResultObject success() {

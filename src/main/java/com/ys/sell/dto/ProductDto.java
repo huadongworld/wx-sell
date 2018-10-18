@@ -17,7 +17,7 @@ public class ProductDto {
     private Integer categoryType;
 
     @JsonProperty("商品")
-    private List<ProductInfoDto> productInfoDtos;
+    private List<ProductInfoDto> productInfoDtoList;
 
     public String getCategoryName() {
         return categoryName;
@@ -35,11 +35,11 @@ public class ProductDto {
         this.categoryType = categoryType;
     }
 
-    public List<ProductInfoDto> getProductInfoDtos() {
-        return productInfoDtos;
+    public List<ProductInfoDto> getProductInfoDtoList() {
+        return productInfoDtoList;
     }
 
-    public void setProductInfoDtos(List<ProductInfoDto> productInfoDtos) {
-        this.productInfoDtos = productInfoDtos;
+    public void setProductInfoDtoList(List<ProductInfoDto> productInfoDtoList) {
+        this.productInfoDtoList = productInfoDtoList;
     }
 }

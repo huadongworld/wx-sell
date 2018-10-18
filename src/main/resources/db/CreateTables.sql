@@ -28,7 +28,7 @@ create table order_master (
   buyer_phone varchar(32) not null comment '买家电话',
   buyer_address varchar(128) not null comment '买家地址',
   buyer_openid varchar(64) not null comment '买家微信openid',
-  buyer_amount decimal(8, 2) not null comment '订单总金额',
+  order_amount decimal(8, 2) not null comment '订单总金额',
   order_status tinyint(3) not null default '0' comment '订单状态，默认0新下单',
   pay_status tinyint(3) not null default '0' comment '支付状态，默认0未支付',
   create_time timestamp not null default current_timestamp comment '创建时间',

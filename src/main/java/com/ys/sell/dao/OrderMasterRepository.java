@@ -4,6 +4,9 @@ package com.ys.sell.dao;/**
  */
 
 import com.ys.sell.model.OrderMaster;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -13,4 +16,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface OrderMasterRepository extends JpaRepository<OrderMaster, String> {
+
+    /**
+     * 查询某个人名下的订单
+     * @param openid
+     * @param pageable
+     * @return
+     */
+    Page<OrderMaster> findByBuyerOpenid(String openid, Pageable pageable);
 }

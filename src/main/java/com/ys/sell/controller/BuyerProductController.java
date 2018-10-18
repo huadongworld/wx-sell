@@ -35,31 +35,36 @@ public class BuyerProductController {
     @GetMapping("/list")
     public ResultObject list() {
 
+        //查询所有上架商品
         List<ProductInfo> productInfoList = productService.findUpAll();
 
+        //查找所有上架商品中的类目
         List<Integer> categoryTypeList = productInfoList.stream()
                 .map(ProductInfo::getCategoryType)
                 .collect(Collectors.toList());
+
+        //查询类目详情
         List<ProductCategory> productCategoryList = categoryService.findByCategoryTypeIn(categoryTypeList);
 
-        List<ProductDto> productVOList = new ArrayList<>();
+        //类目菜单拼装
+        List<ProductDto> productDtoList = new ArrayList<>();
         for (ProductCategory productCategory : productCategoryList) {
-            ProductDto productVO = new ProductDto();
-            productVO.setCategoryType(productCategory.getCategoryType());
-            productVO.setCategoryName(productCategory.getCategoryName());
+            ProductDto productDto = new ProductDto();
+            productDto.setCategoryType(productCategory.getCategoryType());
+            productDto.setCategoryName(productCategory.getCategoryName());
 
-            List<ProductInfoDto> productInfoVOList = new ArrayList<>();
+            List<ProductInfoDto> productInfoDtoList = new ArrayList<>();
             for (ProductInfo productInfo : productInfoList) {
                 if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
-                    ProductInfoDto productInfoVO = new ProductInfoDto();
-                    BeanUtils.copyProperties(productInfo, productInfoVO);
-                    productInfoVOList.add(productInfoVO);
+                    ProductInfoDto productInfoDto = new ProductInfoDto();
+                    BeanUtils.copyProperties(productInfo, productInfoDto);
+                    productInfoDtoList.add(productInfoDto);
                 }
             }
-            productVO.setProductInfoDtos(productInfoVOList);
-            productVOList.add(productVO);
+            productDto.setProductInfoDtoList(productInfoDtoList);
+            productDtoList.add(productDto);
         }
 
-        return ResultObjectUtils.success(productVOList);
+        return ResultObjectUtils.success(productDtoList);
     }
 }
