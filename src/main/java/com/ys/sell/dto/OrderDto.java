@@ -13,8 +13,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by 廖师兄
- * 2017-06-11 18:30
+ * @author HD
+ * @date 2018/10/15 22:03
  */
 public class OrderDto {
 
@@ -50,7 +50,7 @@ public class OrderDto {
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
-    List<OrderDetail> orderDetailList;
+    private List<OrderDetail> orderDetailList;
 
     @JsonIgnore
     public OrderStatusEnum getOrderStatusEnum() {

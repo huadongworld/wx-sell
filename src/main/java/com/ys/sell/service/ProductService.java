@@ -1,5 +1,6 @@
 package com.ys.sell.service;
 
+import com.ys.sell.dto.CartDto;
 import com.ys.sell.model.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,4 +24,30 @@ public interface ProductService {
     Page<ProductInfo> findAll(Pageable pageable);
 
     ProductInfo save(ProductInfo productInfo);
+
+    /**
+     * 加库存
+     * @param cartDTOList
+     */
+    void increaseStock(List<CartDto> cartDTOList);
+
+    /**
+     * 减库存
+     * @param cartDTOList
+     */
+    void decreaseStock(List<CartDto> cartDTOList);
+
+    /**
+     * 上架
+     * @param productId
+     * @return
+     */
+    ProductInfo onSale(String productId);
+
+    /**
+     * 下架
+     * @param productId
+     * @return
+     */
+    ProductInfo offSale(String productId);
 }
