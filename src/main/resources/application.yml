@@ -6,3 +6,6 @@ spring:
     url: jdbc:mysql://192.168.1.176/sell?characterEncoding=utf-8&useSSl=false
   jpa:
     show-sql: true
+#    如果返回到前端的对象是null的话，则不显示
+  jackson:
+    default-property-inclusion: non_null

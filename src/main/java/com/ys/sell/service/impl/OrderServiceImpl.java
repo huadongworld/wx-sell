@@ -128,7 +128,7 @@ public class OrderServiceImpl implements OrderService {
 
         List<OrderDto> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
 
-        return new PageImpl<OrderDto>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+        return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
     }
 
     @Override
@@ -159,7 +159,7 @@ public class OrderServiceImpl implements OrderService {
         List<CartDto> cartDTOList = orderDTO.getOrderDetailList().stream()
                 .map(e -> new CartDto(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
-//        productService.increaseStock(cartDTOList);
+        productService.increaseStock(cartDTOList);
 
         //如果已支付, 需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {

@@ -31,7 +31,7 @@ public class OrderServiceImplTest {
     @Autowired
     private OrderServiceImpl orderService;
 
-    private final String BUYER_OPENID = "1101110";
+    private final String BUYER_OPENID = "110111099";
 
     private final String ORDER_ID = "1539872013046691384";
 
@@ -41,20 +41,20 @@ public class OrderServiceImplTest {
     public void create() throws Exception {
 
         OrderDto orderDTO = new OrderDto();
-        orderDTO.setBuyerName("悟空");
-        orderDTO.setBuyerAddress("花果山");
-        orderDTO.setBuyerPhone("123456789012");
+        orderDTO.setBuyerName("老沙");
+        orderDTO.setBuyerAddress("流沙河");
+        orderDTO.setBuyerPhone("13000000000");
         orderDTO.setBuyerOpenid(BUYER_OPENID);
 
         //购物车
         List<OrderDetail> orderDetailList = new ArrayList<>();
         OrderDetail o1 = new OrderDetail();
-        o1.setProductId("1");
+        o1.setProductId("123457");
         o1.setProductQuantity(10);
 
         OrderDetail o2 = new OrderDetail();
         o2.setProductId("2");
-        o2.setProductQuantity(10);
+        o2.setProductQuantity(5);
 
         orderDetailList.add(o1);
         orderDetailList.add(o2);
