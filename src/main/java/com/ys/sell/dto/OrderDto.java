@@ -52,6 +52,10 @@ public class OrderDto {
 
     private List<OrderDetail> orderDetailList;
 
+    /**
+     * 对象转成json格式会忽略有这个注解的方法
+     * @return
+     */
     @JsonIgnore
     public OrderStatusEnum getOrderStatusEnum() {
         return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
