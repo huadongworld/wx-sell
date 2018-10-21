@@ -9,8 +9,9 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author HD
- * @date 2018/10/15 9:02
+ * @date 2018/10/21 9:25
  */
 @Component
 public interface SellerInfoRepository extends JpaRepository<SellerInfo, String> {
+    SellerInfo findByOpenid(String abc);
 }

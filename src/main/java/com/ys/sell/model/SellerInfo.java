@@ -5,7 +5,7 @@ import javax.persistence.Id;
 
 /**
  * @author HD
- * @date 2018/10/14 20:19
+ * @date 2018/10/21 9:25
  */
 @Entity
 public class SellerInfo {
