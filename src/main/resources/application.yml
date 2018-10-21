@@ -9,6 +9,10 @@ spring:
 #    如果返回到前端的对象是null的话，则不显示
   jackson:
     default-property-inclusion: non_null
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 5
 
 wechat:
   mpAppId: wxd898fcb01713c658
