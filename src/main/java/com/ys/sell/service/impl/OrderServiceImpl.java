@@ -14,6 +14,7 @@ import com.ys.sell.model.OrderMaster;
 import com.ys.sell.model.ProductInfo;
 import com.ys.sell.service.OrderService;
 import com.ys.sell.service.ProductService;
+import com.ys.sell.service.WebSocket;
 import com.ys.sell.utils.KeyUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class OrderServiceImpl implements OrderService {
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Autowired
     private ProductService productService;
@@ -95,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
         productService.decreaseStock(cartDtoList);
 
         //发送websocket消息
-//        webSocket.sendMessage(orderDTO.getOrderId());
+        webSocket.sendMessage(orderDto.getOrderId());
 
         return orderDto;
     }
