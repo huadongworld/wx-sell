@@ -10,13 +10,13 @@ import java.util.List;
  */
 public class ProductDto {
 
-    @JsonProperty("类目名称")
+    @JsonProperty("name")
     private String categoryName;
 
-    @JsonProperty("类目类型")
+    @JsonProperty("type")
     private Integer categoryType;
 
-    @JsonProperty("商品")
+    @JsonProperty("foods")
     private List<ProductInfoDto> productInfoDtoList;
 
     public String getCategoryName() {

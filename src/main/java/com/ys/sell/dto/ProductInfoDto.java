@@ -10,19 +10,19 @@ import java.math.BigDecimal;
  */
 public class ProductInfoDto {
 
-    @JsonProperty("主键")
+    @JsonProperty("id")
     private String productId;
 
-    @JsonProperty("商品名称")
+    @JsonProperty("name")
     private String productName;
 
-    @JsonProperty("单价")
+    @JsonProperty("price")
     private BigDecimal productPrice;
 
-    @JsonProperty("描述")
+    @JsonProperty("description")
     private String productDescription;
 
-    @JsonProperty("小图片")
+    @JsonProperty("icon")
     private String productIcon;
 
     public String getProductId() {

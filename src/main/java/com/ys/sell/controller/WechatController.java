@@ -41,7 +41,7 @@ public class WechatController {
         //1. 配置
         //2. 调用方法
         String url = projectUrlConfig.getWechatMpAuthorize() + "/sell/wechat/userInfo";
-        String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_BASE, URLEncoder.encode(returnUrl));
+        String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_USER_INFO, URLEncoder.encode(returnUrl));
         return "redirect:" + redirectUrl;
     }
 
@@ -71,7 +71,7 @@ public class WechatController {
     @GetMapping("/qrUserInfo")
     public String qrUserInfo(@RequestParam("code") String code,
                              @RequestParam("state") String returnUrl) {
-        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
+        WxMpOAuth2AccessToken wxMpOAuth2AccessToken;
         try {
             wxMpOAuth2AccessToken = wxOpenService.oauth2getAccessToken(code);
         } catch (WxErrorException e) {
