@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Slf4j
 public class PayServiceImplTest {
 
     @Autowired
@@ -27,7 +26,7 @@ public class PayServiceImplTest {
 
     @Test
     public void create() throws Exception {
-        OrderDto orderDTO = orderService.findOne("1499097366838352541");
+        OrderDto orderDTO = orderService.findOne("1539872013046691384");
         payService.create(orderDTO);
     }
 
