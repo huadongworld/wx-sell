@@ -32,10 +32,10 @@ public class SellerAuthorizeAspect {
 
     private static final Logger log = LoggerFactory.getLogger(SellerAuthorizeAspect.class);
 
-    @Pointcut("execution(public * com.ys.sell.controller.Seller*.*(..))" + "&& !execution(public * com.ys.sell.controller.SellerUserController.*(..))")
+//    @Pointcut("execution(public * com.ys.sell.controller.Seller*.*(..))" + "&& !execution(public * com.ys.sell.controller.SellerUserController.*(..))")
     public void verify() {}
 
-    @Before("verify()")
+//    @Before("verify()")
     public void doVerify() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();

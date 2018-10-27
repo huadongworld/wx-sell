@@ -12,6 +12,7 @@ import com.ys.sell.enums.ResultEnum;
 import com.ys.sell.exception.SellException;
 import com.ys.sell.service.OrderService;
 import com.ys.sell.service.PayService;
+import com.ys.sell.utils.MathUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +56,7 @@ public class PayServiceImpl implements PayService {
 
     @Override
     public PayResponse notify(String notifyData) {
+
         //1. 验证签名
         //2. 支付的状态
         //3. 支付金额
@@ -73,13 +75,13 @@ public class PayServiceImpl implements PayService {
         }
 
         //判断金额是否一致(0.10   0.1)
-//        if (!MathUtil.equals(payResponse.getOrderAmount(), orderDTO.getOrderAmount().doubleValue())) {
-//            log.error("【微信支付】异步通知, 订单金额不一致, orderId={}, 微信通知金额={}, 系统金额={}",
-//                    payResponse.getOrderId(),
-//                    payResponse.getOrderAmount(),
-//                    orderDTO.getOrderAmount());
-//            throw new SellException(ResultEnum.WXPAY_NOTIFY_MONEY_VERIFY_ERROR);
-//        }
+        if (!MathUtil.equals(payResponse.getOrderAmount(), orderDTO.getOrderAmount().doubleValue())) {
+            log.error("【微信支付】异步通知, 订单金额不一致, orderId={}, 微信通知金额={}, 系统金额={}",
+                    payResponse.getOrderId(),
+                    payResponse.getOrderAmount(),
+                    orderDTO.getOrderAmount());
+            throw new SellException(ResultEnum.WXPAY_NOTIFY_MONEY_VERIFY_ERROR);
+        }
 
         //修改订单的支付状态
         orderService.paid(orderDTO);
