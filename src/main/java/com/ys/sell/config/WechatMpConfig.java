@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 /**
  * @author HD
  * @date 2018/10/20 14:26
+ *
+ * 微信授权登录
  */
 @Component
 public class WechatMpConfig {

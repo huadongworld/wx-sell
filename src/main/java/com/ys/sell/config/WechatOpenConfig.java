@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 /**
  * @author HD
  * @date 2018/10/21 10:00
+ *
+ * 微信扫码登录配置
  */
 @Component
 public class WechatOpenConfig {

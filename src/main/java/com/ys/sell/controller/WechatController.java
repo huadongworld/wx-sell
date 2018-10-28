@@ -36,15 +36,26 @@ public class WechatController {
 
     private static final Logger log = LoggerFactory.getLogger(WechatController.class);
 
+    /**
+     * 微信授权登录
+     * @param returnUrl
+     * @return
+     */
     @GetMapping("/authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl) {
         //1. 配置
         //2. 调用方法
         String url = projectUrlConfig.getWechatMpAuthorize() + "/sell/wechat/userInfo";
-        String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_USER_INFO, URLEncoder.encode(returnUrl));
+        String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_BASE, URLEncoder.encode(returnUrl));
         return "redirect:" + redirectUrl;
     }
 
+    /**
+     * 点击授权后调用的方法
+     * @param code
+     * @param returnUrl
+     * @return
+     */
     @GetMapping("/userInfo")
     public String userInfo(@RequestParam("code") String code,
                          @RequestParam("state") String returnUrl) {
@@ -61,6 +72,12 @@ public class WechatController {
         return "redirect:" + returnUrl + "?openid=" + openId;
     }
 
+    /**
+     * 微信扫码登陆
+     *
+     * @param returnUrl
+     * @return
+     */
     @GetMapping("/qrAuthorize")
     public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
         String url = projectUrlConfig.getWechatOpenAuthorize() + "/sell/wechat/qrUserInfo";
@@ -68,6 +85,13 @@ public class WechatController {
         return "redirect:" + redirectUrl;
     }
 
+    /**
+     * 扫码登录后调用的方法
+     *
+     * @param code
+     * @param returnUrl
+     * @return
+     */
     @GetMapping("/qrUserInfo")
     public String qrUserInfo(@RequestParam("code") String code,
                              @RequestParam("state") String returnUrl) {

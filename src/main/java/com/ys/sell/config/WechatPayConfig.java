@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 /**
  * @author HD
  * @date 2018/10/26 14:58
+ *
+ * 微信公众号支付配置
  */
 @Component
 public class WechatPayConfig {

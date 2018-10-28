@@ -15,8 +15,11 @@ spring:
     database: 5
 
 wechat:
+#   服务号appId（非订阅号）
   mpAppId: wx71cdd640e05fd544
   mpAppSecret: 33fd7e155f3784dd8216375085296101
+
+#  开放平台的appId
   openAppId: wx6ad144e54af67d87
   openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
 
