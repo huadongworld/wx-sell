@@ -13,6 +13,7 @@ import com.ys.sell.model.OrderDetail;
 import com.ys.sell.model.OrderMaster;
 import com.ys.sell.model.ProductInfo;
 import com.ys.sell.service.OrderService;
+import com.ys.sell.service.PayService;
 import com.ys.sell.service.ProductService;
 import com.ys.sell.utils.KeyUtil;
 import org.slf4j.Logger;
@@ -47,6 +48,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
@@ -163,7 +167,7 @@ public class OrderServiceImpl implements OrderService {
 
         //如果已支付, 需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-//            payService.refund(orderDTO);
+            payService.refund(orderDTO);
         }
 
         return orderDTO;
