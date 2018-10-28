@@ -1,7 +1,4 @@
-package com.ys.sell.dao;/**
- * @author HD
- * @date 2018/10/15 8:59
- */
+package com.ys.sell.dao;
 
 import com.ys.sell.model.ProductInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
