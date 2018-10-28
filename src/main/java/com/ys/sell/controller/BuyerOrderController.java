@@ -44,7 +44,7 @@ public class BuyerOrderController {
      * 创建订单
      */
     @PostMapping("/create")
-    public ResultObject<Map<String, String>> create(@Valid @RequestBody OrderForm orderForm, BindingResult bindingResult) {
+    public ResultObject<Map<String, String>> create(@Valid OrderForm orderForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.error("【创建订单】参数不正确, orderForm={}", orderForm);
             throw new SellException(ResultEnum.PARAM_ERROR.getCode(),

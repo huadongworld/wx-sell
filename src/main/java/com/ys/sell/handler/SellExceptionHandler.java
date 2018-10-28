@@ -19,7 +19,8 @@ public class SellExceptionHandler {
 
     /**
      * 拦截登录异常(SellerAuthorizeAspect中会抛出SellerAuthorizeException异常，抛出时使用这个modelAndView
-     * http://sell.natapp4.cc/sell/wechat/qrAuthorize?returnUrl=http://sell.natapp4.cc/sell/seller/login
+     *
+     * http://huadong.natapp4.cc/sell/wechat/qrAuthorize?returnUrl=http://huadong.natapp4.cc/sell/seller/login
      */
     @ExceptionHandler(value = SellerAuthorizeException.class)
     public ModelAndView handlerAuthorizeException() {

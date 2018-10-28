@@ -12,9 +12,7 @@ import com.ys.sell.exception.SellException;
 import com.ys.sell.model.OrderDetail;
 import com.ys.sell.model.OrderMaster;
 import com.ys.sell.model.ProductInfo;
-import com.ys.sell.service.OrderService;
-import com.ys.sell.service.PayService;
-import com.ys.sell.service.ProductService;
+import com.ys.sell.service.*;
 import com.ys.sell.utils.KeyUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +48,13 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
 
     @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
     private PayService payService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
@@ -99,7 +103,7 @@ public class OrderServiceImpl implements OrderService {
         productService.decreaseStock(cartDtoList);
 
         //发送websocket消息
-//        webSocket.sendMessage(orderDto.getOrderId());
+        webSocket.sendMessage(orderDto.getOrderId());
 
         return orderDto;
     }
@@ -193,7 +197,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         //推送微信模版消息
-//        pushMessageService.orderStatus(orderDTO);
+        pushMessageService.orderStatus(orderDTO);
 
         return orderDTO;
     }
