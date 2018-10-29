@@ -39,3 +39,9 @@ projectUrl:
 server:
   servlet:
     context-path: /sell
+
+# 设置日志级别查看mybatis的sql打印语句
+logging:
+  level:
+    com.ys.sell.model.mapper: trace
+
