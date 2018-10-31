@@ -1,8 +1,10 @@
 package com.ys.sell.service.impl;
 
 import com.ys.sell.exception.SellException;
+import com.ys.sell.service.RedisLock;
 import com.ys.sell.service.SecKillService;
 import com.ys.sell.utils.KeyUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -19,7 +21,13 @@ public class SecKillServiceImpl implements SecKillService {
     static Map<String, Integer> products;
     //库存
     static Map<String, Integer> stock;
+
     static Map<String, String> orders;
+
+    private static final int TIMEOUT = 10;
+
+    @Autowired
+    private RedisLock redisLock;
 
     static {
         products = new HashMap<>();
@@ -46,6 +54,12 @@ public class SecKillServiceImpl implements SecKillService {
     @Override
     public void orderProductMockDiffUser(String productId) {
 
+        //加锁
+        Long time = System.currentTimeMillis() + TIMEOUT;
+        if (!redisLock.lock(productId, String.valueOf(time))) {
+            throw new SellException(101, "人太多了，请稍后再试~~");
+        }
+
         //1.查询该商品库存，为0则活动结束
         int stockNum = stock.get(productId);
         if (stockNum == 0) {
@@ -62,5 +76,8 @@ public class SecKillServiceImpl implements SecKillService {
             }
             stock.put(productId, stockNum);
         }
+
+        //解锁
+        redisLock.unlock(productId, String.valueOf(time));
     }
 }

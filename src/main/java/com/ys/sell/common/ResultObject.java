@@ -1,11 +1,15 @@
 package com.ys.sell.common;
 
+import java.io.Serializable;
+
 /**
  * @author HD
  * @date 2018/10/15 21:15
  */
-public class ResultObject<T> {
+public class ResultObject<T> implements Serializable {
 
+    private static final long serialVersionUID = -4982498107374918692L;
+    
     /**
      * 错误码.
      */

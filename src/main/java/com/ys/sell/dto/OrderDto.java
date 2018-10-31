@@ -8,6 +8,7 @@ import com.ys.sell.model.OrderDetail;
 import com.ys.sell.utils.EnumUtil;
 import com.ys.sell.utils.serializer.Date2LongSerializer;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,9 @@ import java.util.List;
  * @author HD
  * @date 2018/10/15 22:03
  */
-public class OrderDto {
+public class OrderDto implements Serializable {
+
+    private static final long serialVersionUID = -4563386506050040957L;
 
     /** 订单id. */
     private String orderId;

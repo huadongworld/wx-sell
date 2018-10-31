@@ -1,15 +1,23 @@
 package com.ys.sell.dto;
 
+import java.io.Serializable;
+
 /**
  * @author HD
  * @date 2018/10/18 21:02
  */
-public class CartDto {
+public class CartDto implements Serializable {
 
-    /** 商品Id. */
+    private static final long serialVersionUID = 5965763617859459258L;
+
+    /**
+     * 商品Id.
+     */
     private String productId;
 
-    /** 数量. */
+    /**
+     * 数量.
+     */
     private Integer productQuantity;
 
     public CartDto(String productId, Integer productQuantity) {

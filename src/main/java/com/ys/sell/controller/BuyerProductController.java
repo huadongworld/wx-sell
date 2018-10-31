@@ -10,7 +10,9 @@ import com.ys.sell.service.ProductService;
 import com.ys.sell.utils.ResultObjectUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +35,12 @@ public class BuyerProductController {
     private CategoryService categoryService;
 
     @GetMapping("/list")
-    public ResultObject list() {
+//    @Cacheable(cacheNames = "product", key = "123")
+    /**
+     * //当sellerId的长度大于3时，缓存生效；unless：如果ResultObject的code为0，缓存生效（缓存正确数据）
+     */
+    @Cacheable(cacheNames = "product", key = "#sellerId", condition = "#sellerId.length() > 3", unless = "#result.getCode() != 0")
+    public ResultObject list(@PathVariable("sellerId") String sellerId) {
 
         //查询所有上架商品
         List<ProductInfo> productInfoList = productService.findUpAll();

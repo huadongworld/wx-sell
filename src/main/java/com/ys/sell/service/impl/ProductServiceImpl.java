@@ -8,6 +8,8 @@ import com.ys.sell.exception.SellException;
 import com.ys.sell.model.ProductInfo;
 import com.ys.sell.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,12 +23,14 @@ import java.util.Optional;
  * @date 2018/10/15 20:51
  */
 @Service
+@CacheConfig(cacheNames = "product1")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository repository;
 
     @Override
+    @Cacheable(key = "1234") //如果key不填，默认是该方法参数的值
     public ProductInfo findOne(String productId) {
         return repository.findById(productId).orElse(null);
     }
@@ -42,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(key = "1234")// 更新redis缓存
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);
     }

@@ -2,13 +2,16 @@ package com.ys.sell.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * @author HD
  * @date 2018/10/15 21:18
  */
-public class ProductInfoDto {
+public class ProductInfoDto implements Serializable {
+
+    private static final long serialVersionUID = 1796818149752635894L;
 
     @JsonProperty("id")
     private String productId;

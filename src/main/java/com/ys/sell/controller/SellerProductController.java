@@ -9,6 +9,8 @@ import com.ys.sell.service.ProductService;
 import com.ys.sell.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -121,6 +123,8 @@ public class SellerProductController {
      * @return
      */
     @PostMapping("/save")
+//    @Cacheable(cacheNames = "product", key = "123")//更新缓存-------需要满足两个方法的返回值一模一样
+//    @CacheEvict(cacheNames = "product", key = "123")//清缓存-------对应了BuyerProductController.list()方法
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
                              Map<String, Object> map) {

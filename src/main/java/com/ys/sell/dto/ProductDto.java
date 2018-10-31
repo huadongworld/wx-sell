@@ -2,13 +2,16 @@ package com.ys.sell.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author HD
  * @date 2018/10/15 21:17
  */
-public class ProductDto {
+public class ProductDto implements Serializable {
+
+    private static final long serialVersionUID = 2762234352580236016L;
 
     @JsonProperty("name")
     private String categoryName;
