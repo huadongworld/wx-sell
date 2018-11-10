@@ -3,6 +3,8 @@ package com.ys.sell.controller;
 import com.ys.sell.common.ResultObject;
 import com.ys.sell.dto.ProductDto;
 import com.ys.sell.dto.ProductInfoDto;
+import com.ys.sell.exception.BusinessException;
+import com.ys.sell.exception.SellException;
 import com.ys.sell.model.ProductCategory;
 import com.ys.sell.model.ProductInfo;
 import com.ys.sell.service.CategoryService;
@@ -73,5 +75,15 @@ public class BuyerProductController {
         }
 
         return ResultObjectUtils.success(productDtoList);
+    }
+
+    @GetMapping("/userI18n")
+    public ResultObject userI18n() {
+        throw new BusinessException("ESM00001");
+    }
+
+    @GetMapping("/i18n")
+    public ResultObject i18n() {
+        throw new SellException(100, "啦啦啦");
     }
 }

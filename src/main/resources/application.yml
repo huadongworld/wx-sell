@@ -13,6 +13,8 @@ spring:
     host: 127.0.0.1
     port: 6379
     database: 5
+  messages:
+    basename: i18n/WechatSellMessages
 
 wechat:
 #   服务号appId（非订阅号）
