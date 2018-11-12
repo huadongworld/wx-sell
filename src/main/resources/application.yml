@@ -47,3 +47,6 @@ logging:
   level:
     com.ys.sell.model.mapper: trace
 
+global:
+  basename: i18n/GlobalMessages
+
